@@ -1,0 +1,116 @@
+﻿@model Hackathon.Tbl_Urun
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_Urun</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fiyat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SatildiMi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SatildiMi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KullaniciID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KullaniciID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Kategori.Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Kategori.Adi)
+        </dd>
+        @ViewBag.KullaniciBilgi
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UrunId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bodrum's Traffic Jam</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=tr-TR" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        function init () {
+            var myMap = new ymaps.Map('map', {
+                    center: [@ViewBag.Konumx, @ViewBag.Konumy],
+                    zoom: 12
+                }),
+                myPlacemark = new ymaps.Placemark([@ViewBag.Konumx, @ViewBag.Konumy], {
+                    content: 'Bodrum!',
+                    balloonContent: '7th Wonder of World is here!'
+                });
+            myMap.controls
+                .add('searchControl', { left:5, top: 5 })
+                .add('smallZoomControl', { left: 5, top: 165 })
+                .add('typeSelector')
+                .add('mapTools', { left: 5, top: 460 })
+                .add('trafficControl', { left: 270, top: 5 });
+            myMap.geoObjects.add(myPlacemark);
+        }
+    </script>
+</head>
+<body>
+<h3>Bodrum's Traffic Jam</h3>
+<div id="map" style="width:600px; height:500px"></div>
+</body>
+</html>
